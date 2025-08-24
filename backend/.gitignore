@@ -1,0 +1,3 @@
+src/database/migrations
+dist
+node_modules
