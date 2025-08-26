@@ -8,6 +8,7 @@ import {
 import db from './index.js';
 import DisciplinaRealizada from './disciplinaRealizada.js';
 import Matricula from './matricula.js';
+import { Joi } from 'celebrate';
 
 class Usuario extends Model<
   InferAttributes<Usuario>,
@@ -16,6 +17,7 @@ class Usuario extends Model<
   declare id: CreationOptional<number>;
   declare nome: string;
   declare email: string;
+  declare telefone: string;
   declare cpf: string;
   declare dataNascimento: Date;
   declare senha: string;
@@ -38,6 +40,10 @@ Usuario.init(
       allowNull: false,
       unique: true,
       type: DataTypes.STRING(100),
+    },
+    telefone: {
+      allowNull: false,
+      type: DataTypes.STRING(11),
     },
     cpf: {
       allowNull: false,
