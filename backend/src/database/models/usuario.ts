@@ -16,6 +16,8 @@ class Usuario extends Model<
   declare id: CreationOptional<number>;
   declare nome: string;
   declare email: string;
+  declare cpf: string;
+  declare dataNascimento: Date;
   declare senha: string;
   declare role: string;
 }
@@ -37,6 +39,15 @@ Usuario.init(
       unique: true,
       type: DataTypes.STRING(100),
     },
+    cpf: {
+      allowNull: false,
+      unique: true,
+      type: DataTypes.STRING(11),
+    },
+    dataNascimento: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
     senha: {
       allowNull: false,
       type: DataTypes.STRING(60),
@@ -51,6 +62,7 @@ Usuario.init(
     modelName: 'Usuario',
     tableName: 'usuarios',
     timestamps: false,
+    underscored: true,
   },
 );
 Usuario.hasMany(DisciplinaRealizada, {

@@ -19,6 +19,15 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING(100),
       },
+      cpf: {
+        allowNull: false,
+        unique: true,
+        type: Sequelize.STRING(11),
+      },
+      data_nascimento: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
       senha: {
         allowNull: false,
         type: Sequelize.STRING(60),
