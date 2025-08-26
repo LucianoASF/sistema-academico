@@ -12,10 +12,6 @@ module.exports = {
       },
       valor_obtido: {
         allowNull: false,
-        type: Sequelize.STRING(60),
-      },
-      valor: {
-        allowNull: false,
         type: Sequelize.DECIMAL(4, 2),
       },
 
