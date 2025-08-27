@@ -11,6 +11,12 @@ import DisciplinaRealizada from './disciplinaRealizada.js';
 import Presenca from './presenca.js';
 
 class Aula extends Model<InferAttributes<Aula>, InferCreationAttributes<Aula>> {
+  static associate(models: any) {
+    Aula.belongsTo(DisciplinaRealizada, {
+      foreignKey: 'disciplinaRealizadaId',
+    });
+    Aula.hasMany(Presenca, { foreignKey: 'aulaId' });
+  }
   declare id: CreationOptional<number>;
   declare descricao: string;
 
@@ -44,9 +50,5 @@ Aula.init(
     underscored: true,
   },
 );
-
-// Associação
-Aula.belongsTo(DisciplinaRealizada, { foreignKey: 'disciplinaRealizadaId' });
-Aula.hasMany(Presenca, { foreignKey: 'aulaId' });
 
 export default Aula;

@@ -14,6 +14,10 @@ class Presenca extends Model<
   InferAttributes<Presenca>,
   InferCreationAttributes<Presenca>
 > {
+  static associate(models: any) {
+    Presenca.belongsTo(Matricula, { foreignKey: 'matriculaId' });
+    Presenca.belongsTo(Aula, { foreignKey: 'aulaId' });
+  }
   declare id: CreationOptional<number>;
   declare presente: boolean;
 
@@ -54,9 +58,5 @@ Presenca.init(
     underscored: true,
   },
 );
-
-// Associação
-Presenca.belongsTo(Matricula, { foreignKey: 'matriculaId' });
-Presenca.belongsTo(Aula, { foreignKey: 'aulaId' });
 
 export default Presenca;

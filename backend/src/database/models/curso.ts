@@ -12,6 +12,9 @@ class Curso extends Model<
   InferAttributes<Curso>,
   InferCreationAttributes<Curso>
 > {
+  static associate(models: any) {
+    Curso.hasMany(Grade, { foreignKey: 'cursoId' });
+  }
   declare id: CreationOptional<number>;
   declare nome: string;
 }
@@ -36,7 +39,5 @@ Curso.init(
     timestamps: false,
   },
 );
-
-Curso.hasMany(Grade, { foreignKey: 'cursoId' });
 
 export default Curso;

@@ -15,6 +15,13 @@ class Grade extends Model<
   InferAttributes<Grade>,
   InferCreationAttributes<Grade>
 > {
+  static associate(models: any) {
+    Grade.belongsTo(Curso, { foreignKey: 'cursoId' });
+    Grade.belongsToMany(Disciplina, {
+      through: GradeDisciplina,
+      foreignKey: 'disciplinaId',
+    });
+  }
   declare id: CreationOptional<number>;
   declare versao: number;
 
@@ -48,12 +55,5 @@ Grade.init(
     underscored: true,
   },
 );
-
-// Associação
-Grade.belongsTo(Curso, { foreignKey: 'cursoId' });
-Grade.belongsToMany(Disciplina, {
-  through: GradeDisciplina,
-  foreignKey: 'disciplinaId',
-});
 
 export default Grade;

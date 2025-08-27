@@ -15,6 +15,13 @@ class Avaliacao extends Model<
   InferAttributes<Avaliacao>,
   InferCreationAttributes<Avaliacao>
 > {
+  static associate(models: any) {
+    Avaliacao.belongsTo(DisciplinaRealizada, {
+      foreignKey: 'disciplinaRealizadaId',
+    });
+    Avaliacao.hasMany(Nota, { foreignKey: 'avaliacaoId' });
+  }
+
   declare id: CreationOptional<number>;
   declare nome: string;
   declare valor: number;
@@ -54,11 +61,5 @@ Avaliacao.init(
     underscored: true,
   },
 );
-
-// Associação
-Avaliacao.belongsTo(DisciplinaRealizada, {
-  foreignKey: 'disciplinaRealizadaId',
-});
-Avaliacao.hasMany(Nota, { foreignKey: 'avaliacaoId' });
 
 export default Avaliacao;

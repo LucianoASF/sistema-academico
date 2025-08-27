@@ -16,6 +16,14 @@ class Matricula extends Model<
   InferAttributes<Matricula>,
   InferCreationAttributes<Matricula>
 > {
+  static associate(models: any) {
+    Matricula.belongsTo(DisciplinaRealizada, {
+      foreignKey: 'disciplinaRealizadaId',
+    });
+    Matricula.belongsTo(Usuario, { foreignKey: 'alunoId' });
+    Matricula.hasMany(Nota, { foreignKey: 'matriculaId' });
+    Matricula.hasMany(Presenca, { foreignKey: 'matriculaId' });
+  }
   declare id: CreationOptional<number>;
   declare presencaFinal: number;
   declare notaFinal: number;
@@ -60,13 +68,5 @@ Matricula.init(
     underscored: true,
   },
 );
-
-// Associação
-Matricula.belongsTo(DisciplinaRealizada, {
-  foreignKey: 'disciplinaRealizadaId',
-});
-Matricula.belongsTo(Usuario, { foreignKey: 'alunoId' });
-Matricula.hasMany(Nota, { foreignKey: 'matriculaId' });
-Matricula.hasMany(Presenca, { foreignKey: 'matriculaId' });
 
 export default Matricula;

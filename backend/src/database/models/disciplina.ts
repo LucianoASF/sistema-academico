@@ -14,6 +14,15 @@ class Disciplina extends Model<
   InferAttributes<Disciplina>,
   InferCreationAttributes<Disciplina>
 > {
+  static associate(models: any) {
+    Disciplina.hasMany(DisciplinaRealizada, {
+      foreignKey: 'disciplinaId',
+    });
+    Disciplina.belongsToMany(Grade, {
+      through: GradeDisciplina,
+      foreignKey: 'disciplinaId',
+    });
+  }
   declare id: CreationOptional<number>;
   declare nome: string;
   declare quantidadeAulas: string;
@@ -44,13 +53,5 @@ Disciplina.init(
     underscored: true,
   },
 );
-
-Disciplina.hasMany(DisciplinaRealizada, {
-  foreignKey: 'disciplinaId',
-});
-Disciplina.belongsToMany(Grade, {
-  through: GradeDisciplina,
-  foreignKey: 'disciplinaId',
-});
 
 export default Disciplina;

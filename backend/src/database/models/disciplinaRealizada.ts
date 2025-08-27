@@ -17,6 +17,17 @@ class DisciplinaRealizada extends Model<
   InferAttributes<DisciplinaRealizada>,
   InferCreationAttributes<DisciplinaRealizada>
 > {
+  static associate(models: any) {
+    DisciplinaRealizada.belongsTo(Disciplina, { foreignKey: 'disciplinaId' });
+    DisciplinaRealizada.belongsTo(Usuario, { foreignKey: 'professorId' });
+    DisciplinaRealizada.hasMany(Aula, { foreignKey: 'disciplinaRealizadaId' });
+    DisciplinaRealizada.hasMany(Matricula, {
+      foreignKey: 'disciplinaRealizadaId',
+    });
+    DisciplinaRealizada.hasMany(Avaliacao, {
+      foreignKey: 'disciplinaRealizadaId',
+    });
+  }
   declare id: CreationOptional<number>;
 
   // FK
@@ -51,12 +62,5 @@ DisciplinaRealizada.init(
     underscored: true,
   },
 );
-
-// Associação
-DisciplinaRealizada.belongsTo(Disciplina, { foreignKey: 'disciplinaId' });
-DisciplinaRealizada.belongsTo(Usuario, { foreignKey: 'professorId' });
-DisciplinaRealizada.hasMany(Aula, { foreignKey: 'disciplinaRealizadaId' });
-DisciplinaRealizada.hasMany(Matricula, { foreignKey: 'disciplinaRealizadaId' });
-DisciplinaRealizada.hasMany(Avaliacao, { foreignKey: 'disciplinaRealizadaId' });
 
 export default DisciplinaRealizada;

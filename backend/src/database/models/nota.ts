@@ -11,6 +11,10 @@ import Matricula from './matricula.js';
 import Avaliacao from './avaliacao.js';
 
 class Nota extends Model<InferAttributes<Nota>, InferCreationAttributes<Nota>> {
+  static associate(models: any) {
+    Nota.belongsTo(Matricula, { foreignKey: 'matriculaId' });
+    Nota.belongsTo(Avaliacao, { foreignKey: 'avaliacaoId' });
+  }
   declare id: CreationOptional<number>;
   declare valorObtido: number;
 
@@ -51,9 +55,5 @@ Nota.init(
     underscored: true,
   },
 );
-
-// Associação
-Nota.belongsTo(Matricula, { foreignKey: 'matriculaId' });
-Nota.belongsTo(Avaliacao, { foreignKey: 'avaliacaoId' });
 
 export default Nota;
