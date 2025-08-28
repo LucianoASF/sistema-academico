@@ -1,0 +1,11 @@
+import { InferCreationAttributes } from 'sequelize';
+import Usuario from '../database/models/usuario.js';
+
+export class UsuarioRepository {
+  async save(usuario: InferCreationAttributes<Usuario>) {
+    return await Usuario.create(usuario);
+  }
+  async getById(id: number): Promise<Usuario | null> {
+    return await Usuario.findByPk(id);
+  }
+}
