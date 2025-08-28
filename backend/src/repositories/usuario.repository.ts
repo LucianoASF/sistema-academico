@@ -8,4 +8,13 @@ export class UsuarioRepository {
   async getById(id: number): Promise<Usuario | null> {
     return await Usuario.findByPk(id);
   }
+  async destroy(id: number) {
+    await Usuario.destroy({ where: { id } });
+  }
+  async update(
+    dadosAtualizados: InferCreationAttributes<Usuario>,
+    id: number,
+  ): Promise<[linhasAfetadas: number]> {
+    return Usuario.update(dadosAtualizados, { where: { id } });
+  }
 }

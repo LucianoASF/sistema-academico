@@ -12,3 +12,9 @@ usuarioRoutes.post(
   asyncHandler(UsuarioController.save),
 );
 usuarioRoutes.get('/usuarios/:id', asyncHandler(UsuarioController.getById));
+usuarioRoutes.delete('/usuarios/:id', asyncHandler(UsuarioController.destroy));
+usuarioRoutes.put(
+  '/usuarios/:id',
+  celebrate({ [Segments.BODY]: novoUsuarioSchema }),
+  asyncHandler(UsuarioController.update),
+);
