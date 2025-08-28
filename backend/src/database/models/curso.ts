@@ -6,6 +6,7 @@ import {
   type CreationOptional,
 } from 'sequelize';
 import db from './index.js';
+import { Joi } from 'celebrate';
 
 class Curso extends Model<
   InferAttributes<Curso>,
@@ -40,3 +41,7 @@ Curso.init(
 );
 
 export default Curso;
+
+export const cursoSchema = Joi.object().keys({
+  nome: Joi.string().trim().min(10).max(45).required(),
+});
