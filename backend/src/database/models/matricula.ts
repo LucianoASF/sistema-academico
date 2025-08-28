@@ -9,8 +9,6 @@ import {
 import db from './index.js';
 import Usuario from './usuario.js';
 import DisciplinaRealizada from './disciplinaRealizada.js';
-import Nota from './nota.js';
-import Presenca from './presenca.js';
 
 class Matricula extends Model<
   InferAttributes<Matricula>,
@@ -20,9 +18,9 @@ class Matricula extends Model<
     Matricula.belongsTo(DisciplinaRealizada, {
       foreignKey: 'disciplinaRealizadaId',
     });
-    Matricula.belongsTo(Usuario, { foreignKey: 'alunoId' });
-    Matricula.hasMany(Nota, { foreignKey: 'matriculaId' });
-    Matricula.hasMany(Presenca, { foreignKey: 'matriculaId' });
+    Matricula.belongsTo(models.Usuario, { foreignKey: 'alunoId' });
+    Matricula.hasMany(models.Nota, { foreignKey: 'matriculaId' });
+    Matricula.hasMany(models.Presenca, { foreignKey: 'matriculaId' });
   }
   declare id: CreationOptional<number>;
   declare presencaFinal: number;

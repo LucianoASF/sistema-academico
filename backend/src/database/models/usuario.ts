@@ -7,7 +7,6 @@ import {
 } from 'sequelize';
 import db from './index.js';
 import DisciplinaRealizada from './disciplinaRealizada.js';
-import Matricula from './matricula.js';
 import { Joi } from 'celebrate';
 import { brasilPhoneRegex } from '../../utils/regex.js';
 
@@ -16,10 +15,10 @@ class Usuario extends Model<
   InferCreationAttributes<Usuario>
 > {
   static associate(models: any) {
-    Usuario.hasMany(DisciplinaRealizada, {
+    Usuario.hasMany(models.DisciplinaRealizada, {
       foreignKey: 'professorId',
     });
-    DisciplinaRealizada.hasMany(Matricula, { foreignKey: 'alunoId' });
+    DisciplinaRealizada.hasMany(models.Matricula, { foreignKey: 'alunoId' });
   }
   declare id: CreationOptional<number>;
   declare nome: string;

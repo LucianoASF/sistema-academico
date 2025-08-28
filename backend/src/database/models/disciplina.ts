@@ -6,20 +6,17 @@ import {
   type CreationOptional,
 } from 'sequelize';
 import db from './index.js';
-import DisciplinaRealizada from './disciplinaRealizada.js';
-import Grade from './grade.js';
-import GradeDisciplina from './gradeDisciplina.js';
 
 class Disciplina extends Model<
   InferAttributes<Disciplina>,
   InferCreationAttributes<Disciplina>
 > {
   static associate(models: any) {
-    Disciplina.hasMany(DisciplinaRealizada, {
+    Disciplina.hasMany(models.DisciplinaRealizada, {
       foreignKey: 'disciplinaId',
     });
-    Disciplina.belongsToMany(Grade, {
-      through: GradeDisciplina,
+    Disciplina.belongsToMany(models.Grade, {
+      through: models.GradeDisciplina,
       foreignKey: 'disciplinaId',
     });
   }

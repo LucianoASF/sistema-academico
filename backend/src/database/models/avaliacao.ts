@@ -9,17 +9,16 @@ import {
 import db from './index.js';
 import Usuario from './usuario.js';
 import DisciplinaRealizada from './disciplinaRealizada.js';
-import Nota from './nota.js';
 
 class Avaliacao extends Model<
   InferAttributes<Avaliacao>,
   InferCreationAttributes<Avaliacao>
 > {
   static associate(models: any) {
-    Avaliacao.belongsTo(DisciplinaRealizada, {
+    Avaliacao.belongsTo(models.DisciplinaRealizada, {
       foreignKey: 'disciplinaRealizadaId',
     });
-    Avaliacao.hasMany(Nota, { foreignKey: 'avaliacaoId' });
+    Avaliacao.hasMany(models.Nota, { foreignKey: 'avaliacaoId' });
   }
 
   declare id: CreationOptional<number>;

@@ -15,8 +15,8 @@ class Presenca extends Model<
   InferCreationAttributes<Presenca>
 > {
   static associate(models: any) {
-    Presenca.belongsTo(Matricula, { foreignKey: 'matriculaId' });
-    Presenca.belongsTo(Aula, { foreignKey: 'aulaId' });
+    Presenca.belongsTo(models.Matricula, { foreignKey: 'matriculaId' });
+    Presenca.belongsTo(models.Aula, { foreignKey: 'aulaId' });
   }
   declare id: CreationOptional<number>;
   declare presente: boolean;

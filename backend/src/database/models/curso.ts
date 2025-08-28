@@ -6,14 +6,13 @@ import {
   type CreationOptional,
 } from 'sequelize';
 import db from './index.js';
-import Grade from './grade.js';
 
 class Curso extends Model<
   InferAttributes<Curso>,
   InferCreationAttributes<Curso>
 > {
   static associate(models: any) {
-    Curso.hasMany(Grade, { foreignKey: 'cursoId' });
+    Curso.hasMany(models.Grade, { foreignKey: 'cursoId' });
   }
   declare id: CreationOptional<number>;
   declare nome: string;

@@ -9,22 +9,25 @@ import {
 import db from './index.js';
 import Disciplina from './disciplina.js';
 import Usuario from './usuario.js';
-import Aula from './aula.js';
-import Matricula from './matricula.js';
-import Avaliacao from './avaliacao.js';
 
 class DisciplinaRealizada extends Model<
   InferAttributes<DisciplinaRealizada>,
   InferCreationAttributes<DisciplinaRealizada>
 > {
   static associate(models: any) {
-    DisciplinaRealizada.belongsTo(Disciplina, { foreignKey: 'disciplinaId' });
-    DisciplinaRealizada.belongsTo(Usuario, { foreignKey: 'professorId' });
-    DisciplinaRealizada.hasMany(Aula, { foreignKey: 'disciplinaRealizadaId' });
-    DisciplinaRealizada.hasMany(Matricula, {
+    DisciplinaRealizada.belongsTo(models.Disciplina, {
+      foreignKey: 'disciplinaId',
+    });
+    DisciplinaRealizada.belongsTo(models.Usuario, {
+      foreignKey: 'professorId',
+    });
+    DisciplinaRealizada.hasMany(models.Aula, {
       foreignKey: 'disciplinaRealizadaId',
     });
-    DisciplinaRealizada.hasMany(Avaliacao, {
+    DisciplinaRealizada.hasMany(models.Matricula, {
+      foreignKey: 'disciplinaRealizadaId',
+    });
+    DisciplinaRealizada.hasMany(models.Avaliacao, {
       foreignKey: 'disciplinaRealizadaId',
     });
   }

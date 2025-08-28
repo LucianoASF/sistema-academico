@@ -8,17 +8,15 @@ import {
 } from 'sequelize';
 import db from './index.js';
 import Curso from './curso.js';
-import Disciplina from './disciplina.js';
-import GradeDisciplina from './gradeDisciplina.js';
 
 class Grade extends Model<
   InferAttributes<Grade>,
   InferCreationAttributes<Grade>
 > {
   static associate(models: any) {
-    Grade.belongsTo(Curso, { foreignKey: 'cursoId' });
-    Grade.belongsToMany(Disciplina, {
-      through: GradeDisciplina,
+    Grade.belongsTo(models.Curso, { foreignKey: 'cursoId' });
+    Grade.belongsToMany(models.Disciplina, {
+      through: models.GradeDisciplina,
       foreignKey: 'disciplinaId',
     });
   }

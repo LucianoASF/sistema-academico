@@ -8,14 +8,13 @@ import {
 } from 'sequelize';
 import db from './index.js';
 import DisciplinaRealizada from './disciplinaRealizada.js';
-import Presenca from './presenca.js';
 
 class Aula extends Model<InferAttributes<Aula>, InferCreationAttributes<Aula>> {
   static associate(models: any) {
-    Aula.belongsTo(DisciplinaRealizada, {
+    Aula.belongsTo(models.DisciplinaRealizada, {
       foreignKey: 'disciplinaRealizadaId',
     });
-    Aula.hasMany(Presenca, { foreignKey: 'aulaId' });
+    Aula.hasMany(models.Presenca, { foreignKey: 'aulaId' });
   }
   declare id: CreationOptional<number>;
   declare descricao: string;
