@@ -6,7 +6,6 @@ import {
   type CreationOptional,
 } from 'sequelize';
 import db from './index.js';
-import DisciplinaRealizada from './disciplinaRealizada.js';
 import { Joi } from 'celebrate';
 import { brasilPhoneRegex } from '../../utils/regex.js';
 
@@ -18,7 +17,11 @@ class Usuario extends Model<
     Usuario.hasMany(models.DisciplinaRealizada, {
       foreignKey: 'professorId',
     });
-    DisciplinaRealizada.hasMany(models.Matricula, { foreignKey: 'alunoId' });
+    Usuario.hasMany(models.Matricula, { foreignKey: 'alunoId' });
+    Usuario.belongsToMany(models.Cursos, {
+      through: models.UsuarioCurso,
+      foreignKey: 'cursoId',
+    });
   }
   declare id: CreationOptional<number>;
   declare nome: string;

@@ -14,6 +14,10 @@ class Curso extends Model<
 > {
   static associate(models: any) {
     Curso.hasMany(models.Grade, { foreignKey: 'cursoId' });
+    Curso.belongsToMany(models.Usuario, {
+      through: models.UsuarioCurso,
+      foreignKey: 'aluno_id',
+    });
   }
   declare id: CreationOptional<number>;
   declare nome: string;
