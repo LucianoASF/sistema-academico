@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { CursoService } from '../services/curso.service.js';
 
-export class UsuarioController {
+export class DisciplinaController {
   static async save(req: Request, res: Response) {
     res.status(201).json(await new CursoService().save(req.body));
   }
