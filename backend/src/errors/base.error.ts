@@ -5,6 +5,6 @@ export class ErrorBase extends Error {
     super(message);
   }
   send(res: Response) {
-    res.status(this.status).send(this.message);
+    res.status(this.status).json({ erro: this.message });
   }
 }
