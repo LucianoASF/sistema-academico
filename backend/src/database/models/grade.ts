@@ -8,6 +8,7 @@ import {
 } from 'sequelize';
 import db from './index.js';
 import Curso from './curso.js';
+import { Joi } from 'celebrate';
 
 class Grade extends Model<
   InferAttributes<Grade>,
@@ -55,3 +56,8 @@ Grade.init(
 );
 
 export default Grade;
+
+export const gradeSchema = Joi.object().keys({
+  versao: Joi.number().required(),
+  cursoId: Joi.number().required(),
+});
