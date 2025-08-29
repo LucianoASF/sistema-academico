@@ -16,7 +16,7 @@ class Curso extends Model<
     Curso.hasMany(models.Grade, { foreignKey: 'cursoId' });
     Curso.belongsToMany(models.Usuario, {
       through: models.UsuarioCurso,
-      foreignKey: 'aluno_id',
+      foreignKey: 'alunoId',
     });
   }
   declare id: CreationOptional<number>;
