@@ -6,6 +6,7 @@ import {
   type CreationOptional,
 } from 'sequelize';
 import db from './index.js';
+import { Joi } from 'celebrate';
 
 class Disciplina extends Model<
   InferAttributes<Disciplina>,
@@ -52,3 +53,8 @@ Disciplina.init(
 );
 
 export default Disciplina;
+
+export const disciplinaSchema = Joi.object().keys({
+  nome: Joi.string().trim().min(5).max(45).required(),
+  quantidadeAulas: Joi.number().required(),
+});
