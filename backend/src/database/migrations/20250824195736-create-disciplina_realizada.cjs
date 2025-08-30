@@ -10,7 +10,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-
+      data_inicio: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      data_fim: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
       disciplina_id: {
         allowNull: false,
         type: Sequelize.INTEGER,

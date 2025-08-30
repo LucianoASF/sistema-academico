@@ -32,6 +32,8 @@ class DisciplinaRealizada extends Model<
     });
   }
   declare id: CreationOptional<number>;
+  declare dataInicio: Date;
+  declare dataFim: Date;
 
   // FK
   declare disciplinaId: ForeignKey<Disciplina['id']>;
@@ -45,6 +47,14 @@ DisciplinaRealizada.init(
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER,
+    },
+    dataInicio: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    dataFim: {
+      allowNull: true,
+      type: DataTypes.DATE,
     },
     disciplinaId: {
       allowNull: false,
